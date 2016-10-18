@@ -6,31 +6,38 @@
     <div class="panel-body">
 
       <div class="form-group">
-        <label>Name</label>
+        <label>First Name</label>
         <input class="form-control"
                type="text"
                ng-required="true"
-               ng-model="vm.entity.name">
+               ng-model="vm.entity.first_name">
       </div>
       <div class="form-group">
-        <label>Number Exercises</label>
+        <label>Last Name</label>
+        <input class="form-control"
+               type="text"
+               ng-required="true"
+               ng-model="vm.entity.last_name">
+      </div>
+      <div class="form-group">
+        <label>Index</label>
         <input class="form-control"
                type="number"
                ng-required="true"
-               ng-model="vm.entity.numLabs">
+               ng-model="vm.entity.index">
       </div>
       <div class="form-group">
-        <label>Size</label>
-        <ui-select ng-model="vm.entity.groupSize"
-                   title="Choose group size">
+        <label>Group</label>
+        <ui-select ng-model="vm.entity.group"
+                   title="Choose group">
           <ui-select-match
-            placeholder="Select group size...">
-            <span>{{$select.selected}}</span>
+            placeholder="Select group...">
+            <span>{{$select.selected.name}}</span>
           </ui-select-match>
           <ui-select-choices
-            repeat="item in (vm.availableSizes | filter:$select.search )"
+            repeat="item in (vm.groups | filter:$select.search )"
             position="auto">
-            {{item}}
+            {{item.name}}
           </ui-select-choices>
         </ui-select>
       </div>
@@ -66,17 +73,19 @@
              ng-required="true"
              ng-model="vm.filterText">
     </div>
-    <table ng-show="vm.entities.length>0" class="table table-bordered table-striped">
+    <table st-table="vm.entities" ng-show="vm.entities.length>0" class="table table-bordered table-striped">
       <tr>
-        <th>Group Name</th>
-        <th>Group Size</th>
-        <th>Num Exercises</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Index</th>
+        <th>Group</th>
         <th>Actions</th>
       </tr>
       <tr ng-repeat="e in vm.entities | filter : { name: vm.filterText }  | orderBy : 'numLabs'">
-        <td>{{e.name}}</td>
-        <td>{{e.groupSize}}</td>
-        <td>{{e.numLabs}}</td>
+        <td>{{e.first_name}}</td>
+        <td>{{e.last_name}}</td>
+        <td>{{e.index}}</td>
+        <td>{{e.group.name}}</td>
         <td>
           <button class="btn btn-xs btn-default"
                   ng-click="vm.edit(e)">
@@ -91,7 +100,7 @@
     </table>
 
     <div class="panel panel-warning text-warning" ng-hide="vm.entities.length>0">
-      There are no groups!
+      There are no students!
     </div>
   </div>
 </div>
