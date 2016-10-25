@@ -26,21 +26,8 @@
                ng-required="true"
                ng-model="vm.entity.index">
       </div>
-      <div class="form-group">
-        <label>Group</label>
-        <ui-select ng-model="vm.entity.group"
-                   title="Choose group">
-          <ui-select-match
-            placeholder="Select group...">
-            <span>{{$select.selected.name}}</span>
-          </ui-select-match>
-          <ui-select-choices
-            repeat="item in (vm.groups | filter:$select.search )"
-            position="auto">
-            {{item.name}}
-          </ui-select-choices>
-        </ui-select>
-      </div>
+      Group: {{ vm.entity.group.name }}
+      <group-select gr-groups="vm.groups" gr-label="Group" gr-model="vm.entity.group"></group-select>
     </div>
     <div class="panel-footer text-right">
       <div class="panel panel-danger text-center text-danger" ng-show="vm.saveErrMsg">

@@ -27,6 +27,9 @@ var JS_APP = [
   'app/student/student.state.js',
   'app/student/student.controller.js',
   'app/student/student.local.factory.js',
+  'app/wp-input/wp-input.component.js',
+  'app/focus-me/focus-me.directive.js',
+  'app/group-select/group-select.component.js',
   'app/default-page/**.js'
 ];
 
