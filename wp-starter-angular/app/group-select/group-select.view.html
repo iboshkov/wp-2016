@@ -1,0 +1,16 @@
+<div class="form-group">
+  <label>{{$ctrl.grLabel}}</label>
+  <label>{{$ctrl.grModel.name}}</label>
+  <ui-select ng-model="$ctrl.grModel"
+             title="Choose group">
+    <ui-select-match
+      placeholder="Select group...">
+      <span>{{$select.selected.name}}</span>
+    </ui-select-match>
+    <ui-select-choices
+      repeat="item in ( $ctrl.grGroups | filter:$select.search )"
+      position="auto">
+      {{item.name}}
+    </ui-select-choices>
+  </ui-select>
+</div>
