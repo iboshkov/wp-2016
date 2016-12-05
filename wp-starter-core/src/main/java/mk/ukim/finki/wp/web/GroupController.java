@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by 131223 on 11/29/2016.
  */
-@RestController
+g@RestController
 public class GroupController {
 
     @RequestMapping(method = RequestMethod.GET, value = "api/groups")

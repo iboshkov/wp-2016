@@ -35,6 +35,15 @@
       return res.query().$promise;
     }
 
+    function saveFn() {
+      return res.query().$promise;
+    }
+
+
+    function removeFn() {
+      return res.query().$promise;
+    }
+
     function updateFn(groupEntity) {
       return res.update(groupEntity).$promise;
     }
