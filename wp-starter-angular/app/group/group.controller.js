@@ -20,6 +20,8 @@
     vm.saveOkMsg = null;
     vm.saveErrMsg = null;
     vm.availableSizes = [20, 40];
+    vm.is_editing = false;
+
     loadGroups();
 
     function loadGroups() {
@@ -31,18 +33,25 @@
     function save() {
       vm.saveOkMsg = null;
       vm.saveErrMsg = null;
+      var promise;
+      if (vm.is_editing) {
+        promise = GroupService.update(vm.entity);
+      } else {
+        promise = GroupService.save(vm.entity);
+      }
 
-      var promise = GroupService.save(vm.entity);
       promise.then(successCallback, errorCallback);
       function successCallback(data) {
         loadGroups();
-        vm.saveOkMsg = "Group with id " + data.id + " is saved";
+        vm.saveOkMsg = "Group with id " + data.id + " is " + (vm.is_editing ? "updated" : "saved");
         clear();
       }
 
       function errorCallback(data) {
-        vm.saveErrMsg = "Saving error occurred: " + data.message;
+        vm.saveErrMsg = (vm.is_editing ? "Updating" : "Saving") + " error occurred: " + data.message;
       }
+
+      vm.is_editing = false;
     }
 
     function clear() {
@@ -51,6 +60,7 @@
 
     function edit(entity) {
       vm.entity = {};
+      vm.is_editing = true;
       angular.extend(vm.entity, entity);
     }
 

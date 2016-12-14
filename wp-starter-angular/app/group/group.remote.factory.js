@@ -12,11 +12,11 @@
     var groupsList = [];
     var groupIdSequence = 0;
 
-    var res =  $resource('http://localhost:8080/servlet-showcase/api/groups/:id', { id: '@id' }, {
+    var res =  $resource('/api/groups/:id', { id: '@id' }, {
       getAll: { method: 'GET' },
       getById: { method: 'GET' },
       save: { method: 'POST' },
-      update: { method: 'PUT' },
+      update: { method: 'PUT', url: "/api/groups/" },
       remove: { method: 'DELETE' }
     });
 
@@ -35,13 +35,13 @@
       return res.query().$promise;
     }
 
-    function saveFn() {
-      return res.query().$promise;
+    function saveFn(ent) {
+      return res.save(ent).$promise;
     }
 
 
-    function removeFn() {
-      return res.query().$promise;
+    function removeFn(ent) {
+      return res.remove({id: ent.id}).$promise;
     }
 
     function updateFn(groupEntity) {

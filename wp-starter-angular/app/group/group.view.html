@@ -9,7 +9,7 @@
 
       <div class="form-group">
         <label>Size</label>
-        <ui-select ng-model="vm.entity.groupSize"
+        <ui-select ng-model="vm.entity.capacity"
                    title="Choose group size">
           <ui-select-match
             placeholder="Select group size...">
@@ -63,7 +63,7 @@
       </tr>
       <tr ng-repeat="e in vm.entities | filter : { name: vm.filterText }  | orderBy : 'numLabs'">
         <td>{{e.name}}</td>
-        <td>{{e.groupSize}}</td>
+        <td>{{e.capacity}}</td>
         <td>{{e.numLabs}}</td>
         <td>
           <button class="btn btn-xs btn-default"
