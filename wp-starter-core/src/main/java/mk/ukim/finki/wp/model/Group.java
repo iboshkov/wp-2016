@@ -1,9 +1,15 @@
 package mk.ukim.finki.wp.model;
 
+import javax.persistence.*;
+
 /**
  * Created by 131223 on 11/29/2016.
  */
+@Entity
+@Table(name="lab_groups")
 public class Group {
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
     private String name;
     private Integer capacity;
